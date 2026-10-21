@@ -1,0 +1,266 @@
+
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Success and Error Messages -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert {{ message.tags }}" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<!-- HERO SECTION -->
+<section class="hero section-wrap" id="home">
+  <div class="hero-copy">
+    <p class="eyebrow">
+      <span class="status-dot"></span>
+      {{ profile.availability }}
+    </p>
+
+    <h1>
+      Hey, I'm <span class="gradient-text">{{ profile.name }}</span>.<br>
+      I build things for the web<span class="accent-dot">.</span>
+    </h1>
+
+    <p class="hero-description">{{ profile.intro }}</p>
+
+    <div class="hero-actions">
+      <a class="button button-primary" href="#projects">
+        Explore my work <span>↘</span>
+      </a>
+      <a class="button button-ghost" href="#contact">
+        Contact me <span>↗</span>
+      </a>
+    </div>
+
+    <div class="social-row">
+      <a href="{{ profile.github }}" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href="{{ profile.linkedin }}" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <span class="location-label">⌖ {{ profile.location }}</span>
+    </div>
+  </div>
+
+  <aside class="hero-card glass-card">
+    <div class="card-topline">
+      <span>PROFILE / 001</span>
+      <span class="live-indicator">● ONLINE</span>
+    </div>
+
+    {% if profile.photo %}
+      <div class="avatar avatar-photo">
+        <img src="{% static profile.photo %}" alt="Portrait of {{ profile.name }}">
+      </div>
+    {% else %}
+      <div class="avatar">
+        <span>{{ profile.first_name|slice:":1"|upper }}</span>
+        <i>✦</i>
+      </div>
+    {% endif %}
+
+    <h2>{{ profile.name }}</h2>
+    <p class="muted">{{ profile.role }}</p>
+
+    <div class="card-divider"></div>
+
+    <div class="mini-stat">
+      <span>Current focus</span>
+      <strong>Building & learning</strong>
+    </div>
+
+    <div class="mini-stat">
+      <span>Toolkit</span>
+      <strong>Python · Django · JS</strong>
+    </div>
+
+    <div class="orb orb-small"></div>
+  </aside>
+
+  <div class="hero-footnote">
+    <span>SCROLL TO EXPLORE</span>
+    <span class="scroll-line"></span>
+    <span>01 — 04</span>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section-wrap section-block" id="about">
+  <div class="section-heading">
+    <p class="eyebrow">01 / A LITTLE ABOUT ME</p>
+    <h2>Curious mind.<br><span class="muted-heading">Practical builder.</span></h2>
+  </div>
+
+  <div class="about-grid">
+    <article class="bento-card about-card">
+      <div class="card-icon">✳</div>
+      <h3>What I do</h3>
+      <p>{{ profile.about }}</p>
+      <a class="text-link" href="#contact">
+        Let's work together <span>↗</span>
+      </a>
+    </article>
+
+    <article class="bento-card values-card">
+      <p class="eyebrow">MY APPROACH</p>
+      <h3>Keep it useful.<br>Keep it thoughtful.</h3>
+
+      <div class="value-list">
+        <span>01 <b>Clean code</b></span>
+        <span>02 <b>Responsive design</b></span>
+        <span>03 <b>Always learning</b></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="section-wrap section-block" id="skills">
+  <div class="section-heading">
+    <p class="eyebrow">02 / MY TOOLKIT</p>
+    <h2>Skills I work with<span class="accent-dot">.</span></h2>
+    <p class="section-subtitle">
+      Tools I'm using to turn ideas into working projects.
+    </p>
+  </div>
+
+  <div class="skills-grid">
+    {% for skill in skills %}
+      <div class="skill-chip">
+        <span class="skill-spark">✦</span>{{ skill }}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="section-wrap section-block" id="projects">
+  <div class="section-heading projects-heading">
+    <div>
+      <p class="eyebrow">03 / SELECTED WORK</p>
+      <h2>Projects in progress<span class="accent-dot">.</span></h2>
+    </div>
+    <span class="project-count">
+      {{ projects|length|stringformat:"02d" }} PROJECTS
+    </span>
+  </div>
+
+  <div class="projects-grid">
+    {% for project in projects %}
+      <article class="project-card {% if project.featured %}project-featured{% endif %}">
+        <div class="project-art art-{{ forloop.counter }}">
+          <span class="project-index">{{ project.number }}</span>
+
+          <span class="art-symbol">
+            {% if forloop.counter == 1 %}
+              ⌘
+            {% elif forloop.counter == 2 %}
+              ◈
+            {% else %}
+              ⌁
+            {% endif %}
+          </span>
+
+          <span class="art-caption">{{ project.category }}</span>
+        </div>
+
+        <div class="project-content">
+          <div class="project-title-row">
+            <h3>{{ project.title }}</h3>
+            <span class="project-arrow">↗</span>
+          </div>
+
+          <p>{{ project.description }}</p>
+
+          <div class="tag-row">
+            {% for tag in project.tags %}
+              <span>{{ tag }}</span>
+            {% endfor %}
+          </div>
+
+          {% if project.github or project.demo %}
+            <div class="project-links">
+              {% if project.github %}
+                <a href="{{ project.github }}" target="_blank" rel="noreferrer">
+                  Source code ↗
+                </a>
+              {% endif %}
+
+              {% if project.demo %}
+                <a href="{{ project.demo }}" target="_blank" rel="noreferrer">
+                  Live demo ↗
+                </a>
+              {% endif %}
+            </div>
+          {% else %}
+            <p class="project-note">
+              Add your GitHub or demo link in <code>profile_data.py</code>.
+            </p>
+          {% endif %}
+        </div>
+      </article>
+    {% empty %}
+      <p>Add your projects to <code>portfolio_site/profile_data.py</code>.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section-wrap section-block contact-section" id="contact">
+  <div class="contact-panel glass-card">
+
+    <div class="contact-copy">
+      <p class="eyebrow">04 / GET IN TOUCH</p>
+
+      <h2>
+        Have an idea?<br>
+        <span class="gradient-text">Let's build it.</span>
+      </h2>
+
+      <p class="section-subtitle">
+        Have a project, opportunity, or just want to say hello?
+        Send me a message.
+      </p>
+
+      <a class="email-link" href="mailto:{{ profile.email }}">
+        {{ profile.email }} ↗
+      </a>
+    </div>
+
+    <form class="contact-form" method="post" action="#contact">
+      {% csrf_token %}
+
+      <div class="form-field">
+        <label for="{{ form.name.id_for_label }}">Your name</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+      </div>
+
+      <div class="form-field">
+        <label for="{{ form.email.id_for_label }}">Email address</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+
+      <div class="form-field">
+        <label for="{{ form.message.id_for_label }}">Message</label>
+        {{ form.message }}
+        {{ form.message.errors }}
+      </div>
+
+      <button class="button button-primary submit-button" type="submit">
+        Send message <span>↗</span>
+      </button>
+
+      <p class="form-note">
+        Thank you for reaching out. I'll get back to you soon.
+      </p>
+    </form>
+
+  </div>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,116 @@
+
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section-wrap" id="training-gallery">
+
+    <div class="section-heading">
+        <p class="eyebrow">MY LEARNING JOURNEY</p>
+        <h1>Training & Internship</h1>
+        <p>
+            Explore my training, courses, internships,
+            certificates, and the skills I have learned.
+        </p>
+    </div>
+
+    <section class="gallery-section">
+        <h2>Training & Courses</h2>
+
+        <div class="certificate-grid">
+            {% for item in training_items %}
+                <article class="certificate-card">
+                    <h3>{{ item.title }}</h3>
+
+                    <p><strong>Organization:</strong>
+                        {{ item.organization }}
+                    </p>
+
+                    {% if item.duration %}
+                        <p><strong>Duration:</strong>
+                            {{ item.duration }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.completion_date %}
+                        <p><strong>Completed:</strong>
+                            {{ item.completion_date|date:"F Y" }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.description %}
+                        <p>{{ item.description }}</p>
+                    {% endif %}
+
+                    {% if item.skills %}
+                        <p><strong>Skills:</strong>
+                            {{ item.skills }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.certificate %}
+                        <a
+                            class="certificate-button"
+                            href="{{ item.certificate.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Certificate
+                        </a>
+                    {% endif %}
+                </article>
+            {% empty %}
+                <p>No training certificates added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>Internships & Experience</h2>
+
+        <div class="certificate-grid">
+            {% for item in internship_items %}
+                <article class="certificate-card">
+                    <h3>{{ item.title }}</h3>
+
+                    <p><strong>Organization:</strong>
+                        {{ item.organization }}
+                    </p>
+
+                    {% if item.duration %}
+                        <p><strong>Duration:</strong>
+                            {{ item.duration }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.description %}
+                        <p>{{ item.description }}</p>
+                    {% endif %}
+
+                    {% if item.skills %}
+                        <p><strong>Technologies:</strong>
+                            {{ item.skills }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.certificate %}
+                        <a
+                            class="certificate-button"
+                            href="{{ item.certificate.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Certificate
+                        </a>
+                    {% endif %}
+                </article>
+            {% empty %}
+                <p>No internship experience added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</section>
+{% endblock %}
+
+

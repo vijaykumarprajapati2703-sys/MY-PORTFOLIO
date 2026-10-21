@@ -1,0 +1,130 @@
+
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}About Me | Vijay Kumar Prajapati{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'core/css/about.css' %}">
+
+<section class="about-section">
+
+    <header class="about-heading">
+        <span class="about-tag">GET TO KNOW ME</span>
+        <h1>About <span>Me</span></h1>
+        <p>My introduction, education, skills and learning journey.</p>
+    </header>
+
+    <div class="about-grid">
+
+        <!-- Introduction -->
+        <article class="about-card">
+            <div class="about-icon">
+                <i class="bi bi-person-circle"></i>
+            </div>
+
+            <h2>Introduction</h2>
+
+            <p>
+                Hello, I'm <strong>Vijay Kumar Prajapati</strong>,
+                a third-year Diploma student in Information Technology.
+            </p>
+
+            <p>
+                I am interested in Python and Django development.
+                I enjoy learning new technologies and building practical
+                projects to improve my programming skills.
+            </p>
+        </article>
+
+        <!-- Education -->
+        <article class="about-card">
+            <div class="about-icon">
+                <i class="bi bi-mortarboard"></i>
+            </div>
+
+            <h2>Education</h2>
+
+            <div class="education-item">
+                <span class="education-label">Qualification</span>
+                <p>Diploma in Information Technology</p>
+            </div>
+
+            <div class="education-item">
+                <span class="education-label">Current Year</span>
+                <p>Third Year</p>
+            </div>
+
+            <div class="education-item">
+                <span class="education-label">Institute</span>
+                <p>Government Polytechnic Mirzapur</p>
+            </div>
+        </article>
+
+        <!-- Technical Skills -->
+        <article class="about-card about-full">
+            <div class="about-icon">
+                <i class="bi bi-code-slash"></i>
+            </div>
+
+            <h2>Technical Skills</h2>
+
+            <p class="card-description">
+                Technologies I am learning and using in my projects.
+            </p>
+
+            <div class="skills-list">
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">Django</span>
+                <span class="skill-badge">HTML</span>
+                <span class="skill-badge">CSS</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">Bootstrap</span>
+                <span class="skill-badge">Data Structures</span>
+                <span class="skill-badge">C Programming</span>
+                <span class="skill-badge">Java Programming</span>
+            </div>
+        </article>
+
+        <!-- Learning Journey -->
+        <article class="about-card about-full">
+            <div class="about-icon">
+                <i class="bi bi-rocket-takeoff"></i>
+            </div>
+
+            <h2>My Learning Journey</h2>
+
+            <p>
+                I believe in learning through practice. By building
+                projects, I improve my problem-solving abilities and
+                gain practical experience in web development.
+            </p>
+
+            <p>
+                My goal is to develop useful web applications,
+                explore new technologies and grow as a developer.
+            </p>
+        </article>
+
+    </div>
+
+    <!-- Career Goal -->
+    <div class="about-goal">
+        <div class="goal-icon">
+            <i class="bi bi-bullseye"></i>
+        </div>
+
+        <div>
+            <h2>My Goal</h2>
+            <p>
+                To turn ideas into useful web applications and
+                continuously improve my development skills.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
